@@ -1,0 +1,14 @@
+{% extends  'base.html' %}
+
+{% block content%}
+{% for posts in object_list%}
+<div class="panel panel-default">
+  <div class="panel body">
+    <a href="hd">{{posts.title}}</a>
+
+  </div>
+
+</div>
+{%endfor%}
+
+{% endblock%}
