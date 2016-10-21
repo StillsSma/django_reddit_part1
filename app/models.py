@@ -43,6 +43,9 @@ class Post(models.Model):
         end_time = datetime.today()
         return Comment.objects.filter(post__title=self.title).filter(creation_time__range=(start_time, end_time)).count() > 3
 
+    def comments(self):
+        return Comment.objects.filter(post=self)
+
 
 
 class Comment(models.Model):

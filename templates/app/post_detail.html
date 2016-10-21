@@ -1,0 +1,23 @@
+{% extends  'base.html' %}
+
+{% block content%}
+<p>
+  <a href="{% url 'comment_create_view' post.id %}">Create Comment</a>
+</p>
+
+<h1>{{ object.title }}</h1>
+<p>{{ object.description }}</p>
+<p>User: {{ object.user }}</p>
+<p>Posted: {{ object.creation_time }}</p>
+<p>
+  {% for comment in object.comments %}
+  <p>
+  {{comment.user}} : {{comment}}
+  </p>
+  {% endfor %}
+</p>
+
+
+
+
+{% endblock%}

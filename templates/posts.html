@@ -1,10 +1,11 @@
 {% extends  'base.html' %}
 
 {% block content%}
-{% for posts in object_list%}
+<h2></h2>
+{% for post in object_list%}
 <div class="panel panel-default">
   <div class="panel body">
-    <a href="hd">{{posts.title}}</a>
+    <a href="{% url 'post_detail_view' post.id %}">{{post.title}}</a>
 
   </div>
 

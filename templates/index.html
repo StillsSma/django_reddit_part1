@@ -1,28 +1,24 @@
 {% extends 'base.html'%}
 
 {% block content%}
-<h1>Welcome to the Reddit_Killer </h1>
-<h4>Your Move, Huffman</h4>
 
 <ul>
   Please Enjoy These Quality Subreddits:
 
-  {% for subs in subreddit  %}
+  {% for subreddit in object_list  %}
   <p>
-        <a href="subreddit/{{subs.id}}">{{subs.name}}</a>
+    <div class="panel panel-default">
+      <div class="panel-header"><a href="subreddit/{{subreddit.id}}">{{subreddit.name}}</a></div>
+      <div class="panel-body">
+        {{subreddit.description}}
+        {{subreddit.current_count}} posts
+      </div>
+
+    </div>
   </p>
 
   {% endfor %}
 </ul>
-
-
-<form class="" method="post">
-  {% csrf_token %}
-{{form}}
-  <input class="btn btn-default" type="submit" value="Create Sub">
-</form>
-
-
 
 
 

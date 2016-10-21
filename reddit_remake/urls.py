@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
-from app.views import index_view, SubredditView
+from app.views import SubredditListView, PostListView, PostDetailView, CommentCreateView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^', include('django.contrib.auth.urls')),
-    url(r'^$', index_view, name="index_view"),
-    url(r'^subreddit/(?P<sub_id>\d+)/$', SubredditView.as_view(), name="Subreddit_view")
+    url(r'^$', SubredditListView.as_view(), name="subreddit_list_view"),
+    url(r'^subreddit/(?P<sub_id>\d+)/$', PostListView.as_view(), name="post_list_view"),
+    url(r'^post/(?P<pk>\d+)/$', PostDetailView.as_view(), name="post_detail_view"),
+    url (r'^create/comment/(?P<pk>\d+)$', CommentCreateView.as_view(), name="comment_create_view"),
 ]
