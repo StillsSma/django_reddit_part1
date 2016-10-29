@@ -1,19 +1,34 @@
 {% extends  'base.html' %}
 
 {% block content%}
+{% if request.user.is_authenticated %}
 <p>
-  <a href="{% url 'comment_create_view' post.id %}">Create Comment</a>
+  <a href="{% url 'comment_create_view' object.id %}">Create Comment</a>
+  <a href="{% url 'post_update_view' post.id %}">Update Post</a>
 </p>
 
-<h1>{{ object.title }}</h1>
-<p>{{ object.description }}</p>
-<p>User: {{ object.user }}</p>
-<p>Posted: {{ object.creation_time }}</p>
+{% endif %}
+
+<h1>{{ object.title }} </h1>
+<h3>{{ object.description }} posted by {{ object.user }}</h3>
+{% if object.is_recent is True %}
+<h3>New!</h3>
+{% endif %}
+{% if object.is_hot is True %}
+<h3>This post is Hot!</h3>
+{% endif %}
+
+<h4>Comments:</h4>
+
 <p>
   {% for comment in object.comments %}
-  <p>
-  {{comment.user}} : {{comment}}
-  </p>
+  <div class="panel panel-default">
+    <div class="panel body">
+      {{comment.user}} : {{comment}}
+    </div>
+
+  </div>
+
   {% endfor %}
 </p>
 

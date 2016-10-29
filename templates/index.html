@@ -2,16 +2,22 @@
 
 {% block content%}
 
+<p>
+  <a href="{% url 'subreddit_create_view' %} ">Create New Subreddit</a>
+
+</p>
+
 <ul>
   Please Enjoy These Quality Subreddits:
 
   {% for subreddit in object_list  %}
   <p>
     <div class="panel panel-default">
-      <div class="panel-header"><a href="subreddit/{{subreddit.id}}">{{subreddit.name}}</a></div>
+      <div class="panel-header"><a href="{% url 'subreddit_detail_view' subreddit.id %}">{{subreddit.name}}</a></div>
       <div class="panel-body">
         {{subreddit.description}}
         {{subreddit.current_count}} posts
+        <a href="{% url 'subreddit_update_view' subreddit.id %}">Update</a>
       </div>
 
     </div>
@@ -19,10 +25,5 @@
 
   {% endfor %}
 </ul>
-
-
-
-
-
 
 {%endblock%}

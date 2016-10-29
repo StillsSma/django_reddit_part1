@@ -10,6 +10,8 @@ class Subreddit(models.Model):
 
     def __str__(self):
         return self.name
+    def posts(self):
+        return Post.objects.filter(subreddit=self)
 
     def current_count(self):
         return Post.objects.filter(subreddit__name=self.name).count()
